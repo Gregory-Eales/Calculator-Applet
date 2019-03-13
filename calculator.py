@@ -6,19 +6,26 @@ class Calculator(object):
     def __init__(self):
 
         self.gui = Tk()
-        self.topframe = Frame(self.gui)
-        self.topframe.pack()
-        self.botframe = Frame(self.gui)
-        self.botframe.pack(side=BOTTOM)
-        self.button1 = Button(self.topframe, text="Button 1", fg="red")
-        self.button2 = Button(self.topframe, text="Button 2", fg="green")
-        self.button3 = Button(self.topframe, text="Button 3", fg="blue")
-        self.button1.pack()
-        self.button2.pack()
-        self.button3.pack()
-
-        Button()
-
+        self.gui.title("Calculator")
+        self.frame = Frame(self.gui, width=200, height=600)
+        self.initialize_buttons()
         self.gui.mainloop()
 
 
+
+
+
+        self.gui.mainloop()
+
+    def initialize_buttons(self):
+
+        self.num_buttons = {}
+
+        for i in range(1, 10):
+            self.num_buttons[str(i)] = Button(self.gui, text=str(i))
+            row = ((i-1)//3)+1
+            column = (i+2)%3 +1
+            self.num_buttons[str(i)].grid(row=row, column=column)
+
+        self.num_buttons["0"] = Button(self.gui, text="0")
+        self.num_buttons["0"].grid(row=4, column=2)
